@@ -34,9 +34,12 @@ Please see the core functions:
 
 ## Results
 
-You can make StyleBilt with the following quality.
+You can make StyleBilt results with the following quality.
 
-<video src="results/stylebilt_01.mp4" autoplay></video>
+01  | 02
+--|---
+![results/stylebilt_01.gif](results/stylebilt_01.gif)  | ![results/stylebilt_02.gif](results/stylebilt_02.gif) 
+
 
 ## Mechanism
 
@@ -189,7 +192,7 @@ total   |  8.25 sec
 
 Due to the unoptimized code, main drawback is its performance (it takes about 10 sec to process a single target image).
 
-Quality might be also improved by multi-scale StyleBilt approach taken in the original work. I consider to extend the current single-scale clustering using a hierarchical manner.  
+Quality might be also improved by multi-scale StyleBilt approach taken in the original work. I consider to extend the current single-scale clustering using a hierarchical manner.
 
 
 ## License
