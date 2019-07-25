@@ -51,7 +51,40 @@ function [D_T, idx] = detail_transfer(D_S, G_S, G_T, A_T, k, density)
     % - D_T: target detail layer
     % - idx: cluster indices
     
+    [hs, ws, ~] = size(G_S);
+    [ht, wt, ~] = size(G_T);
     
+    [idx, G_c, P_c] = feature_clustering(G_T, A_T, k);
+    G_c_flat = reshape(G_c, ht*wt, []);
+    P_c_flat = reshape(P_c, ht*wt, []);
+    Q = floor(P_c_flat);
+    
+    Uy_q = floor(hs*(1.0 - G_c_flat(:,2)));
+    Uy_q = clamp(Uy_q, 1, hs);
+    Ux_q = clamp(floor(ws*G_c_flat(:,1)), 1, ws);
+    U_q = cat(3, Uy_q, Ux_q);
+    
+    x = 1:wt;
+    y = 1:ht;
+    [Px,Py] = meshgrid(x,y);
+    P = cat(3, Py, Px);
+    P = reshape(P, [], 2);
+    
+    U = U_q + density * (P-Q);
+    U = floor(U);
+    U(:,1) = clamp(U(:,1), 1, hs);
+    U(:,2) = clamp(U(:,2), 1, ws);
+    
+    D_S_flat = reshape(D_S, hs*ws, []);
+    
+    U_ids = sub2ind([hs ws], U(:,1), U(:,2));
+    
+    D_T_flat = D_S_flat(U_ids, :);
+    
+    D_T = reshape(D_T_flat, ht, wt, 3);
+end
+
+function [D_T, idx] = detail_transfer_slow(D_S, G_S, G_T, A_T, k, density)
     [hs, ws, ~] = size(G_S);
     [ht, wt, ~] = size(G_T);
     
@@ -66,9 +99,8 @@ function [D_T, idx] = detail_transfer(D_S, G_S, G_T, A_T, k, density)
             end
             
             q = floor(P_c(py, px,1:2));
-            
             q = reshape(q, 1, 2);
-            q = [q(2) q(1)];
+            
             p = [py px];
             
             uy = floor(hs*(1.0 - G_c(py,px,2)));
@@ -147,7 +179,7 @@ function [P, scaler] = position_feature(h, w)
     x = 1:w;
     y = 1:h;
     [X,Y] = meshgrid(x,y);
-    P = cat(3, X, Y);
+    P = cat(3, Y, X);
     scaler = sqrt(w*h);
     P = P / scaler;
 end

@@ -38,7 +38,7 @@ You can make StyleBilt results with the following quality.
 
 01  | 02
 --|---
-![results/stylebilt_01.gif](results/stylebilt_01.gif)  | ![results/stylebilt_02.gif](results/stylebilt_02.gif) 
+![results/stylebilt_01.gif](results/stylebilt_01.gif)  | ![results/stylebilt_02.gif](results/stylebilt_02.gif)
 
 
 ## Mechanism
@@ -184,13 +184,14 @@ sigma  |  Gaussian filter parameter for base/detail layer separation
 
 Process | Computation time
 --|--
-base transfer |  2.27 sec
-detail transfer  |  5.94 sec
-total   |  8.25 sec
+base transfer |  0.07 sec
+detail transfer  |  1.60 sec
+image IO  |  2.44
+total   |  5.32 sec
 
 ## Limitations
 
-Due to the unoptimized code, main drawback is its performance (it takes about 10 sec to process a single target image).
+Due to the unoptimized code, main drawback is its performance (it takes about 5 sec to process a single target image).
 
 Quality might be also improved by multi-scale StyleBilt approach taken in the original work. I consider to extend the current single-scale clustering using a hierarchical manner.
 
