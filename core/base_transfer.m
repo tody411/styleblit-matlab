@@ -22,6 +22,7 @@ function B_T = base_transfer(B_S, G_S, G_T)
     B_T = reshape(B_T_flat, ht, wt, 3);
 end
 
+
 function B_T = base_transfer_slow(B_S, G_S, G_T)
     [hs, ws, ~] = size(G_S); 
     [ht, wt, ~] = size(G_T);
