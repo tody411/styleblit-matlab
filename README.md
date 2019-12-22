@@ -1,8 +1,8 @@
 
-Cluster-Based StyleBilt Demo (MATLAB)
+Cluster-Based StyleBlit Demo (MATLAB)
 ====
 
-Simple MATLAB test-implementation of StyleBilt [\[Sýkora et al. 2019\]](https://dcgi.fel.cvut.cz/home/sykorad/styleblit.html).
+Simple MATLAB test-implementation of StyleBlit [\[Sýkora et al. 2019\]](https://dcgi.fel.cvut.cz/home/sykorad/styleblit.html).
 
 The original work used **grid**-based approach to fit fully parallel operations on 3D rendering pipeline.
 
