@@ -6,7 +6,7 @@ Simple MATLAB test-implementation of StyleBlit [\[Sýkora et al. 2019\]](https:/
 
 The original work used **grid**-based approach to fit fully parallel operations on 3D rendering pipeline.
 
-In this demo, I implemented **cluster**-based approach, which can be easily developed using MATLAB built-in functions. I just tested a single-scale StyleBilt process based on the cluster structures. However, overall quality seems good for processing animated sequences.
+In this demo, I implemented **cluster**-based approach, which can be easily developed using MATLAB built-in functions. I just tested a single-scale StyleBlit process based on the cluster structures. However, overall quality seems good for processing animated sequences.
 
 ## Data
 
@@ -34,11 +34,11 @@ Please see the core functions:
 
 ## Results
 
-You can make StyleBilt results with the following quality.
+You can make StyleBlit results with the following quality.
 
 01  | 02
 --|---
-![results/stylebilt_01.gif](results/stylebilt_01.gif)  | ![results/stylebilt_02.gif](results/stylebilt_02.gif)
+![results/styleblit_01.gif](results/styleblit_01.gif)  | ![results/styleblit_02.gif](results/styleblit_02.gif)
 
 
 ## Mechanism
@@ -59,17 +59,17 @@ Please see the core functions:
 I replaced the original jittering grid-based approach with cluster-based approach. I simply clusters coupled (guide, position) feature to make near regular cluster regions.
 
 Please see the core functions:
-- [stylebilt_cluster](core/stylebilt_cluster.m)
+- [styleblit_cluster](core/styleblit_cluster.m)
 
-![results/stylebilt_01.png](results/stylebilt_01.png)
+![results/styleblit_01.png](results/styleblit_01.png)
 
 
 ## Installation
 
-Before running demo programs, please run the following command once from the command window (or just run [stylebilt_setup.m](stylebilt_setup.m)).
+Before running demo programs, please run the following command once from the command window (or just run [styleblit_setup.m](styleblit_setup.m)).
 
 ``` bash
-  >> stylebilt_setup
+  >> styleblit_setup
 ```
 
 This command just adds [`core`](core) and [`demo`](demo) directories to MATLAB path to run the example scripts in the root directory.
@@ -85,12 +85,12 @@ I used functions from the following toolboxes.
 
 ## Example Codes
 
-### Cluster-Based StyleBilt Demo on Video Inputs: [run_stylebilt_video.m](run_stylebilt_video.m)
+### Cluster-Based StyleBlit Demo on Video Inputs: [run_styleblit_video.m](run_styleblit_video.m)
 
 You can test the main demo code in the following.
 
 ``` MATLAB
-%% Cluster-Based StyleBilt Demo on Video Inputs
+%% Cluster-Based StyleBlit Demo on Video Inputs
 
 %% Parameter settings
 sigma = 15;
@@ -98,18 +98,18 @@ sigma = 15;
 k = 200;
 density = 1.5;
 
-%% Run Cluster-based StyleBilt demo on video inputs for each style_id ['01', ..., '05']
+%% Run Cluster-based StyleBlit demo on video inputs for each style_id ['01', ..., '05']
 for id=1:5
     style_id = sprintf('%02d', id);
-    stylebilt_video_demo(style_id,sigma, k, density);
+    styleblit_video_demo(style_id,sigma, k, density);
 end
 
 ```
 
-This code will generate video results for 60 target frames with 5 styles through the cluster-based StyleBilt process (it may take 30 min to complete the process).
+This code will generate video results for 60 target frames with 5 styles through the cluster-based StyleBlit process (it may take 30 min to complete the process).
 
 Please see the demo functions:
-- [stylebilt_video_demo](demo/stylebilt_video_demo.m)
+- [styleblit_video_demo](demo/styleblit_video_demo.m)
 
 Parameter  |  Description
 --|--
@@ -118,12 +118,12 @@ sigma  |  Gaussian filter parameter for base/detail layer separation
 k  |  target number of clusters
 density  |  density of sampling exempler
 
-### Cluster-Based StyleBilt Demo: [run_stylebilt.m](run_stylebilt.m)
+### Cluster-Based StyleBlit Demo: [run_styleblit.m](run_styleblit.m)
 
-You can test cluster-based stylebilt function in the following way.
+You can test cluster-based styleblit function in the following way.
 
 ``` MATLAB
-%% Cluster-Based StyleBilt Demo
+%% Cluster-Based StyleBlit Demo
 
 %% Parameter settings
 sigma = 15;
@@ -132,18 +132,18 @@ target_frame = 1;
 k = 200;
 density = 1.5;
 
-%% Run Cluster-based StyleBilt demo for each style_id ['01', ..., '05']
+%% Run Cluster-based StyleBlit demo for each style_id ['01', ..., '05']
 for id=1:5
     style_id = sprintf('%02d', id);
-    stylebilt_demo(style_id, target_frame, sigma, k, density);
+    styleblit_demo(style_id, target_frame, sigma, k, density);
 end
 
 ```
 
-This code will generate StyleBilt results with 5 styles including base layer transfer and cluster-based detail layer transfer.
+This code will generate StyleBlit results with 5 styles including base layer transfer and cluster-based detail layer transfer.
 
 Please see the demo functions:
-- [stylebilt_demo](demo/stylebilt_demo.m)
+- [styleblit_demo](demo/styleblit_demo.m)
 
 Parameter  |  Description
 --|--
@@ -193,7 +193,7 @@ total   |  5.32 sec
 
 Due to the unoptimized code, main drawback is its performance (it takes about 5 sec to process a single target image).
 
-Quality might be also improved by multi-scale StyleBilt approach taken in the original work. I consider to extend the current single-scale clustering using a hierarchical manner.
+Quality might be also improved by multi-scale StyleBlit approach taken in the original work. I consider to extend the current single-scale clustering using a hierarchical manner.
 
 
 ## License
